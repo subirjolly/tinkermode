@@ -1,4 +1,3 @@
-import { timeStamp } from 'console';
 import fetch from 'node-fetch'
 
 const formatMemoryUsage = (data) => Math.round(data / 1024 / 1024 * 100) / 100;
@@ -38,9 +37,10 @@ const processLine = (storage, timestamp, value, lastLine=false) => {
 }
 
 const processChunk = (data, storage) => {
-    data.forEach(d => {
-        const timestamp = new Date(d[0])
-        const value = parseFloat(d[1])
+    data.forEach(row => {
+        const timestamp = new Date(row[0])
+        const value = parseFloat(row[1])
+
         processLine(storage, timestamp, value)
     })
 }
